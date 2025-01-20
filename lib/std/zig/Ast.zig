@@ -2989,6 +2989,7 @@ pub const Error = struct {
         var_const_decl,
         extra_for_capture,
         for_input_not_captured,
+        colon_in_return_signature,
 
         zig_style_container,
         previous_field,
