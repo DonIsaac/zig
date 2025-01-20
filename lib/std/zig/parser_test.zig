@@ -6262,6 +6262,17 @@ test "recovery: eof in c pointer" {
     });
 }
 
+test "recovery: colon in function return signature" {
+    try testError(
+        \\fn f(): void {}
+        \\fn g(): callconv(.C) void {}
+        \\const H = fn (): void {}
+    , &[_]Error{
+        .colon_in_return_signature,
+        .colon_in_return_signature,
+    });
+}
+
 test "matching whitespace on minus op" {
     try testError(
         \\ _ = 2 -1, 

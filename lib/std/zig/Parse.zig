@@ -711,6 +711,8 @@ fn parseFnProto(p: *Parse) !Node.Index {
 
     _ = p.eatToken(.identifier);
     const params = try p.parseParamDeclList();
+    if (p.eatToken(.colon)) |_| try p.warn(.colon_in_return_signature);
+
     const align_expr = try p.parseByteAlign();
     const addrspace_expr = try p.parseAddrSpace();
     const section_expr = try p.parseLinkSection();
